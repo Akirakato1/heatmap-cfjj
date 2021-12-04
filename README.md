@@ -1,6 +1,6 @@
-# Google Maps JavaScript API Sample Application
+# Google Maps JavaScript API Heatmap CFJJ Application 
 
-This sample is generated from @googlemaps/js-samples located at
+Based on Sample generated from @googlemaps/js-samples located at
 https://github.com/googlemaps/js-samples.
 
 ## Setup

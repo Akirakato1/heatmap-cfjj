@@ -26,6 +26,14 @@ let heatmapAsian: google.maps.visualization.HeatmapLayer;
 let heatmapWhite: google.maps.visualization.HeatmapLayer; 
 let heatmapBlack: google.maps.visualization.HeatmapLayer; 
 let heatmapHisp: google.maps.visualization.HeatmapLayer; 
+let Centraville: google.maps.Polygon;
+let Pawtucketville: google.maps.Polygon;
+let Highlands: google.maps.Polygon;
+let Acre: google.maps.Polygon;
+let Downtown: google.maps.Polygon;
+let Belvidere: google.maps.Polygon;
+let Back_Central: google.maps.Polygon;
+let South_Lowell: google.maps.Polygon;
 
 function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
@@ -49,6 +57,89 @@ function initMap(): void {
   heatmapHisp = new google.maps.visualization.HeatmapLayer({
     data: getPoints("LATINO"),
   });
+
+  const sop=0.8;
+  const fop=0.1;
+  Centraville = new google.maps.Polygon({
+    paths: getPolygons("Centraville"),
+    strokeColor: "#FF0000",
+    strokeOpacity: sop,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    fillOpacity: fop,
+  });
+  Centraville.setMap(map)
+
+  Pawtucketville = new google.maps.Polygon({
+    paths: getPolygons("Pawtucketville"),
+    strokeColor: "#0C8710",
+    strokeOpacity: sop,
+    strokeWeight: 2,
+    fillColor: "#0C8710",
+    fillOpacity: fop,
+  });
+  Pawtucketville.setMap(map)
+
+  Highlands = new google.maps.Polygon({
+    paths: getPolygons("Highlands"),
+    strokeColor: "#37747D",
+    strokeOpacity: sop,
+    strokeWeight: 2,
+    fillColor: "#37747D",
+    fillOpacity: fop,
+  });
+  Highlands.setMap(map)
+
+  Acre = new google.maps.Polygon({
+    paths: getPolygons("Acre"),
+    strokeColor: "#3355FF",
+    strokeOpacity: sop,
+    strokeWeight: 2,
+    fillColor: "#3355FF",
+    fillOpacity: fop,
+  });
+  Acre.setMap(map)
+
+  Downtown = new google.maps.Polygon({
+    paths: getPolygons("Downtown"),
+    strokeColor: "#FFFC33",
+    strokeOpacity: sop,
+    strokeWeight: 2,
+    fillColor: "#FFFC33",
+    fillOpacity: fop,
+  });
+  Downtown.setMap(map)
+
+  Belvidere = new google.maps.Polygon({
+    paths: getPolygons("Belvidere"),
+    strokeColor: "#E033FF",
+    strokeOpacity: sop,
+    strokeWeight: 2,
+    fillColor: "#E033FF",
+    fillOpacity: fop,
+  });
+  Belvidere.setMap(map)
+
+  Back_Central = new google.maps.Polygon({
+    paths: getPolygons("Back_Central"),
+    strokeColor: "#1C6D10",
+    strokeOpacity: sop,
+    strokeWeight: 2,
+    fillColor: "#1C6D10",
+    fillOpacity: fop,
+  });
+  Back_Central.setMap(map)
+
+  South_Lowell = new google.maps.Polygon({
+    paths: getPolygons("South_Lowell"),
+    strokeColor: "#FF8D33",
+    strokeOpacity: sop,
+    strokeWeight: 2,
+    fillColor: "#FF8D33",
+    fillOpacity: fop,
+  });
+  South_Lowell.setMap(map)
+
 
   heatmapAll.set("radius",30)
   heatmapBlack.set("radius",30)
@@ -75,6 +166,36 @@ function initMap(): void {
   document
     .getElementById("hisp")!
     .addEventListener("click", toggleHeatmapHisp);
+  document
+    .getElementById("region")!
+    .addEventListener("click", toggleRegion);
+}
+
+function toggleRegion(){
+if(Centraville.getMap()==null){
+	Pawtucketville.setMap(map)
+	Centraville.setMap(map)
+	Highlands.setMap(map)
+	Acre.setMap(map)
+	Downtown.setMap(map)
+	Belvidere.setMap(map)
+	Back_Central.setMap(map)
+	South_Lowell.setMap(map)
+	}
+else{
+	clearRegion()
+}
+}
+
+function clearRegion(){
+	Pawtucketville.setMap(null)
+	Centraville.setMap(null)
+	Highlands.setMap(null)
+	Acre.setMap(null)
+	Downtown.setMap(null)
+	Belvidere.setMap(null)
+	Back_Central.setMap(null)
+	South_Lowell.setMap(null)
 }
 
 function clear(){
@@ -108,6 +229,124 @@ function toggleHeatmapAsian() {
 function toggleHeatmapHisp() {
     clear()
     heatmapHisp.setMap(map)
+}
+
+function getPolygons(town: String){
+	if(town=="Centraville"){
+	return [{ lat: 42.65645142441566, lng: -71.31833306873224 },
+{ lat: 42.65136899429606, lng: -71.31022178226941 },
+{ lat: 42.64709920032544, lng: -71.30285190808074 },
+{ lat: 42.64418725571446, lng: -71.29216890569204 },
+{ lat: 42.65028423052404, lng: -71.28533961240427 },
+{ lat: 42.66677010764073, lng: -71.29894222421704 },
+{ lat: 42.66267987863731, lng: -71.32090738048417 },
+{ lat: 42.65645142441566, lng: -71.31833306873224 },];
+	}
+	if(town=="Pawtucketville"){
+	return [{ lat: 42.64990845446791, lng: -71.38171440880961 },
+{ lat: 42.63826393894204, lng: -71.37076269516221 },
+{ lat: 42.64111538204813, lng: -71.34405976456965 },
+{ lat: 42.64693847351928, lng: -71.33540815469613 },
+{ lat: 42.65655721613285, lng: -71.318643637115 },
+{ lat: 42.66258121753568, lng: -71.32094958922406 },
+{ lat: 42.65463728851807, lng: -71.36040004986623 },
+{ lat: 42.66072417876724, lng: -71.36740091225413 },
+{ lat: 42.65957350293534, lng: -71.37604618858273 },
+{ lat: 42.64990845446791, lng: -71.38171440880961 },];
+	}
+	if(town=="Highlands"){
+	return [{ lat: 42.63809241056548, lng: -71.37107566464721 },
+{ lat: 42.62760671141602, lng: -71.36598181727024 },
+{ lat: 42.61293384689884, lng: -71.32804784265265 },
+{ lat: 42.60713389391427, lng: -71.32579663857305 },
+{ lat: 42.60784953519015, lng: -71.32077075370947 },
+{ lat: 42.62634398533375, lng: -71.31994309723282 },
+{ lat: 42.63167759806062, lng: -71.31545644721031 },
+{ lat: 42.63445877881517, lng: -71.310789096351 },
+{ lat: 42.63870774165882, lng: -71.3149895833632 },
+{ lat: 42.64119136480536, lng: -71.31656802872592 },
+{ lat: 42.63931332974276, lng: -71.32092177506632 },
+{ lat: 42.64073230218622, lng: -71.32845109269272 },
+{ lat: 42.64277806432147, lng: -71.32942721856381 },
+{ lat: 42.63859230382654, lng: -71.34343604492953 },
+{ lat: 42.6410214994611, lng: -71.34449866893524 },
+{ lat: 42.63809241056548, lng: -71.37107566464721 },];
+	}
+	if(town=="Acre"){
+	return [{ lat: 42.63859716682479, lng: -71.34347537656572 },
+{ lat: 42.64285254495849, lng: -71.32944320571613 },
+{ lat: 42.64091890285646, lng: -71.32831533174567 },
+{ lat: 42.63942832319997, lng: -71.32073295072755 },
+{ lat: 42.64125147119253, lng: -71.31660295646057 },
+{ lat: 42.64495300878159, lng: -71.31307253445912 },
+{ lat: 42.64794027617145, lng: -71.31314462194239 },
+{ lat: 42.65159948352597, lng: -71.3108070929579 },
+{ lat: 42.65647324752781, lng: -71.3187030285811 },
+{ lat: 42.64699789351639, lng: -71.33523140637642 },
+{ lat: 42.64102764037982, lng: -71.34438491662577 },
+{ lat: 42.63859716682479, lng: -71.34347537656572 },];
+	}
+	if(town=="Downtown"){
+	return [{ lat: 42.64124484732309, lng: -71.31653983560608 },
+{ lat: 42.63908552198519, lng: -71.31519905428591 },
+{ lat: 42.64126848029846, lng: -71.30795452969492 },
+{ lat: 42.64021534658021, lng: -71.30723595637143 },
+{ lat: 42.6404403424652, lng: -71.30314488523238 },
+{ lat: 42.64273719891642, lng: -71.30304264944515 },
+{ lat: 42.6440959165116, lng: -71.30611556898218 },
+{ lat: 42.64711150987954, lng: -71.30288735014393 },
+{ lat: 42.65151883339571, lng: -71.3106754800946 },
+{ lat: 42.64804305907631, lng: -71.31307256794953 },
+{ lat: 42.6449544288355, lng: -71.31306720171193 },
+{ lat: 42.64124484732309, lng: -71.31653983560608 },];
+	}
+	if(town=="Belvidere"){
+	return [{ lat: 42.64416077433754, lng: -71.2921681771184 },
+{ lat: 42.64704528330398, lng: -71.30290386814647 },
+{ lat: 42.64402080054587, lng: -71.30596695515004 },
+{ lat: 42.64280397887519, lng: -71.30303836623068 },
+{ lat: 42.64042391238759, lng: -71.30313054308345 },
+{ lat: 42.63746912541351, lng: -71.30262400202697 },
+{ lat: 42.63665960248162, lng: -71.29661860973985 },
+{ lat: 42.6356676909826, lng: -71.29282853556516 },
+{ lat: 42.63312237148899, lng: -71.2900472790906 },
+{ lat: 42.6291758013783, lng: -71.2752200212111 },
+{ lat: 42.64049770954389, lng: -71.27165878421084 },
+{ lat: 42.64883484821885, lng: -71.27204791543271 },
+{ lat: 42.65647893552843, lng: -71.27549910412755 },
+{ lat: 42.65041226536553, lng: -71.2853849650329 },
+{ lat: 42.64416077433754, lng: -71.2921681771184 },];
+	}
+	if(town=="Back_Central"){
+	return [{ lat: 42.64039263918801, lng: -71.30314526632512 },
+{ lat: 42.64015667319314, lng: -71.30722000068899 },
+{ lat: 42.64131299271362, lng: -71.30811240443258 },
+{ lat: 42.63905034811942, lng: -71.31510838822865 },
+{ lat: 42.63454443286982, lng: -71.31068137948949 },
+{ lat: 42.63113490415257, lng: -71.30538368158375 },
+{ lat: 42.63489525079236, lng: -71.3017052747041 },
+{ lat: 42.63715126844824, lng: -71.30265808855246 },
+{ lat: 42.64039263918801, lng: -71.30314526632512 },];
+	}
+	if(town=="South_Lowell"){
+	return [{ lat: 42.60790894859306, lng: -71.32058518826138 },
+{ lat: 42.61419257086001, lng: -71.31909470733933 },
+{ lat: 42.61397569834402, lng: -71.29646936308906 },
+{ lat: 42.61262736950574, lng: -71.29632847534229 },
+{ lat: 42.61565464259076, lng: -71.28254143423491 },
+{ lat: 42.62136305372938, lng: -71.27786649876545 },
+{ lat: 42.62909283075851, lng: -71.27533909594531 },
+{ lat: 42.63295176670879, lng: -71.2898839571547 },
+{ lat: 42.63567722122743, lng: -71.29282292780371 },
+{ lat: 42.63657508341792, lng: -71.29638459978926 },
+{ lat: 42.63747260217146, lng: -71.30266129360004 },
+{ lat: 42.63484923820239, lng: -71.30163596292485 },
+{ lat: 42.63114302018085, lng: -71.30534903490138 },
+{ lat: 42.63447141939774, lng: -71.31076895808577 },
+{ lat: 42.6319466257026, lng: -71.31495350608145 },
+{ lat: 42.62611330583375, lng: -71.3200644004198 },
+{ lat: 42.60790894859306, lng: -71.32058518826138 },];
+	}
 }
 
 function getPoints(race: String) {
